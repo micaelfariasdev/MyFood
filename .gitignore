@@ -1,0 +1,9 @@
+# Ignorar todos os arquivos e diretórios que começam com ponto (.)
+venv/
+.venv/
+.*/*
+__pycache__/
+
+# Exceções para não ignorar arquivos essenciais
+!.gitignore
+.env

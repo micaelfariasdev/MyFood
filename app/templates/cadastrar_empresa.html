@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="conteiner">
+    
+    <h1>Cadastrar</h1>
+    <form  method="post">
+        {{ form.csrf_token }}
+        <div class='div-r-all'>
+            {{ form.user(placeholder='.') }}
+            {{ form.user.label }}<br>
+        </div>
+        <div class='div-r-50'>
+            {{ form.senha(placeholder='.') }}
+            {{ form.senha.label }}<br>
+        </div>
+        <div class='div-r-50'>
+            {{ form.confirmsenha(placeholder='.') }}
+            {{ form.confirmsenha.label }}<br>
+        </div>
+        <div class='div-r-all'>
+            {{ form.nome(placeholder='.') }}
+            {{ form.nome.label }}<br>
+        </div>
+        <div class='div-r-all'>
+            {{ form.razao_social(placeholder='.') }}
+            {{ form.razao_social.label }}<br>
+        </div>
+        <div class='div-r-all'>
+            {{ form.cnpj(placeholder='.') }}
+            {{ form.cnpj.label }}<br>
+        </div>
+        <div class='div-r-50'>
+            {{ form.email(placeholder='.') }}
+            {{ form.email.label }}<br>
+        </div>
+        <div class='div-r-50'>
+            {{ form.telefone(placeholder='.') }}
+            {{ form.telefone.label }}<br>
+        </div>
+        <div class='div-r-50'>
+            {{ form.end_rua(placeholder='.') }}
+            {{ form.end_rua.label }}<br>
+        </div>
+        <div class='div-r-50'>
+            {{ form.end_numero(placeholder='.') }}
+            {{ form.end_numero.label }}<br>
+        </div>
+        <div class='div-r-50'>
+            {{ form.end_bairro(placeholder='.') }}
+            {{ form.end_bairro.label }}<br>
+        </div>
+        <div class='div-r-25'>
+            {{ form.end_cidade(placeholder='.') }}
+            {{ form.end_cidade.label }}<br>
+        </div>
+        <div class='div-r-25'>
+            {{ form.end_estado(placeholder='.') }}
+            {{ form.end_estado.label }}<br>
+        </div>
+        <div class="div-col-1">{{ form.submit }}</div>
+    </form>
+</div>
+{% endblock %}

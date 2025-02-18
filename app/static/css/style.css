@@ -1,0 +1,360 @@
+@charset "UFT-8";
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: Nunito, Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+}
+
+:root {
+  --span: 1;
+  --vermelho: #e74c3c;
+  --laranja: #f39c12;
+  --verde: #27ae60;
+  --creme: #fdebd0;
+  --cinza: #2c3e50;
+  --preto: #000000;
+  --branco: #ffffff;
+}
+
+html {
+  height: 100vh;
+}
+
+body {
+  height: 100vh;
+  display: grid;
+  background: var(--creme);
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr auto;
+}
+
+/* Configuranado Menu */
+.icon {
+  position: relative;
+  top: 5px;
+  padding-right: 10px;
+}
+
+header {
+  position: relative;
+  z-index: 1;
+  background: var(--vermelho);
+}
+
+header > .conteiner {
+  padding: 10px;
+  width: 5ch;
+  height: 100%;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+
+header > .conteiner:hover {
+  width: 25ch;
+}
+
+header > .conteiner > nav > ul {
+  list-style: none;
+  color: var(--creme);
+  font-weight: bolder;
+}
+
+header > .conteiner > nav > ul > li {
+  display: block;
+  white-space: nowrap;
+}
+
+header > .conteiner > nav > ul > li:hover {
+  transform: scale(110%);
+}
+
+header > .conteiner > a > div.logo {
+  height: 80px;
+  background-image: url(../img/logo-pq.png);
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+header > .conteiner > nav > ul > li > a {
+  text-decoration: none;
+  color: var(--creme);
+}
+
+header > .conteiner > nav > ul > li > a > span {
+  display: none;
+}
+
+header > .conteiner:hover > nav > ul > li > a > span {
+  display: inline;
+}
+
+header > .conteiner:hover > a > div.logo {
+  background-image: url(../img/logo.png);
+}
+
+/* Configurando Conteúdo */
+main {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  background: var(--branco);
+}
+
+main > .conteiner {
+  background: var(--creme);
+  height: 95%;
+  width: 95%;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 5px 5px 15px #00000056;
+}
+
+.conteiner-body {
+  display: grid;
+  padding: 0;
+  margin: 0;
+  background: #ffffff8a;
+  height: 100vh;
+  width: 100vw;
+  z-index:0 ;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: all 1s;
+}
+
+.conteiner-body.show{
+  z-index: 9999;
+  opacity: 1;
+}
+
+.conteiner-float {
+  padding: 20px;
+  display: grid;
+  position: relative;
+  background: var(--creme);
+  justify-self: center;
+  justify-items: center;
+  align-self: center;
+  align-items: center;
+  align-content: center;
+  border-radius: 20px;
+  box-shadow: 5px 5px 10px #0000004d;
+  transition: all 1s;
+  top: 100vh;
+}
+
+.conteiner-float.show{
+  top: 0;
+}
+
+.conteiner-float a {
+  margin: 5px;
+  font-size: 0.7em;
+  text-decoration: none;
+  font-style: italic;
+}
+
+main .conteiner > h1 {
+  font-weight: 900;
+}
+
+.alert{
+  position: absolute;
+  z-index: 9999;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.301);
+  background: white;
+
+  animation: name duration timing-function delay iteration-count direction fill-mode;
+  animation: flash 5s  forwards;
+}
+
+@keyframes flash {
+  0% {
+  top: -10vh;
+  opacity: 0;
+  }
+  10%{
+  top: 3vh;
+  opacity: 1;
+  }
+  90%{
+  top: 3vh;
+  opacity: 1;
+  }
+  100%{
+  top: -10vh;
+  opacity: 0;
+  }
+}
+
+.alert ul{
+  list-style: none;
+}
+
+.alert-danger{
+  background: rgba(238, 4, 4, 0.356);
+  color: #ee2020;
+}
+
+.alert-success{
+  background: rgba(4, 238, 63, 0.356);
+  color: #145f0a;
+}
+
+.alert-message{
+  background: rgba(222, 238, 4, 0.356);
+  color: #8b8d09;
+}
+
+main .conteiner > form {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 5px;
+}
+
+main .conteiner > form input,
+main .conteiner > form select {
+  display: block;
+  width: 100%;
+  height: 30px;
+  position: relative;
+  background: var(--creme);
+  border: 2px solid var(--vermelho);
+  border-radius: 10px;
+  padding-left: 10px;
+}
+
+main .conteiner > form label {
+  display: inline;
+  height: 30px;
+  position: relative;
+  bottom: 25px;
+  left: 10px;
+  color: var(--vermelho);
+  cursor: text;
+  background: var(--creme);
+  width: auto;
+  transition: all 0.3s;
+}
+
+main
+  .conteiner
+  > form
+  input:invalid:not(:focus):not(:placeholder-shown)
+  + label,
+main .conteiner > form select:invalid:not(:focus):not(:empty) + label {
+  border-left: 5px solid var(--creme);
+  border-right: 5px solid var(--creme);
+  bottom: 42px;
+  font-size: 0.6em;
+  color: var(--vermelho);
+}
+
+main .conteiner > form input:focus,
+main .conteiner > form input:valid,
+main .conteiner > form select:focus,
+main .conteiner > form select:valid {
+  border: 2px solid var(--verde);
+  outline: none;
+}
+
+main .conteiner > form input:focus + label,
+main .conteiner > form input:valid + label,
+main .conteiner > form select:focus + label,
+main .conteiner > form select:valid + label {
+  border-left: 5px solid var(--creme);
+  border-right: 5px solid var(--creme);
+  bottom: 42px;
+  font-size: 0.6em;
+  color: var(--verde);
+}
+
+#fechar-login {
+  background-color: var(--vermelho);
+  padding: 2px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+#fechar-login a {
+  color: var(--branco);
+  font-weight: bolder;
+  font-style: normal;
+  text-decoration: none;
+}
+
+.div-col-1 {
+  grid-column: 1 / span var(--span); /* Começa na coluna 1 e ocupa 1 coluna */
+}
+
+.div-col-2 {
+  grid-column: 2 / span var(--span); /* Começa na coluna 2 e ocupa 1 coluna */
+}
+
+.div-col-3 {
+  grid-column: 3 / span var(--span); /* Começa na coluna 3 e ocupa 1 coluna */
+}
+
+.div-col-4 {
+  grid-column: 4 / span var(--span); /* Começa na coluna 4 e ocupa 1 coluna */
+}
+
+.div-r-25 {
+  grid-column: span 1;
+}
+
+.div-r-50 {
+  grid-column: span 2;
+}
+
+.div-r-75 {
+  grid-column: span 3;
+}
+
+.div-r-all {
+  grid-column: span 4;
+}
+
+.span-1 {
+  --span: 1;
+}
+
+.span-2 {
+  --span: 2;
+}
+
+.span-3 {
+  --span: 3;
+}
+
+.span-4 {
+  --span: 4;
+}
+
+#submit {
+  padding: 0;
+  text-align: center;
+  padding-inline: 10px;
+  color: var(--verde);
+}
+
+/* Configurando Roda pé */
+footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  font-style: italic;
+  padding-block: 10px;
+  background: var(--cinza);
+  grid-column: span 2;
+  color: var(--branco);
+}
