@@ -2,16 +2,16 @@
 
 {% block main %}
 <div class="conteiner">
-    <h1>Clientes</h1>
-    <a href="{{ url_for('cadastro_cliente') }}"><input type="button" id="submit" value="Novo Cliente"></a>
-    <table>
+    <h1 class="div-col-1">Clientes</h1>
+    <a href="{{ url_for('cadastro_cliente') }}" class="div-col-4"><input type="button" id="submit" value="Novo Cliente"></a>
+    <table class="div-col-1 span-4 mt-15">
         <thead>
             <tr>
                 <th>Nome</th>
                 <th>Numero</th>
                 <th>E-Mail</th>
                 <th>Pedido</th>
-                <th></th>
+                <th>Ação</th>
             </tr>
         </thead>
         <tbody>
@@ -21,7 +21,7 @@
                 <td>{{ cliente.telefone }}</td>
                 <td>{{ cliente.email }}</td>
                 <td>{{ cliente.pedidos_historico | length }}</td>
-                <td></td>
+                <td>X E V</td>
             </tr>
             {% endfor %}
         </tbody>

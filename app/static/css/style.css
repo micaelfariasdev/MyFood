@@ -64,11 +64,13 @@ header > .conteiner > nav > ul {
 
 header > .conteiner > nav > ul > li {
   display: block;
+  position: relative;
   white-space: nowrap;
 }
 
 header > .conteiner > nav > ul > li:hover {
   transform: scale(110%);
+  left: 5px;
 }
 
 header > .conteiner > a > div.logo {
@@ -105,6 +107,10 @@ main {
 }
 
 main > .conteiner {
+  display: grid;
+  align-content: start;
+  align-items: center;
+    justify-items: center;
   background: var(--creme);
   height: 95%;
   width: 95%;
@@ -120,7 +126,7 @@ main > .conteiner {
   background: #ffffff8a;
   height: 100vh;
   width: 100vw;
-  z-index:0 ;
+  z-index: 0;
   position: fixed;
   top: 0;
   left: 0;
@@ -128,7 +134,7 @@ main > .conteiner {
   transition: all 1s;
 }
 
-.conteiner-body.show{
+.conteiner-body.show {
   z-index: 9999;
   opacity: 1;
 }
@@ -149,7 +155,7 @@ main > .conteiner {
   top: 100vh;
 }
 
-.conteiner-float.show{
+.conteiner-float.show {
   top: 0;
 }
 
@@ -164,7 +170,7 @@ main .conteiner > h1 {
   font-weight: 900;
 }
 
-.alert{
+.alert {
   position: absolute;
   z-index: 9999;
   padding: 10px;
@@ -172,44 +178,45 @@ main .conteiner > h1 {
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.301);
   background: white;
 
-  animation: name duration timing-function delay iteration-count direction fill-mode;
-  animation: flash 5s  forwards;
+  animation: name duration timing-function delay iteration-count direction
+    fill-mode;
+  animation: flash 5s forwards;
 }
 
 @keyframes flash {
   0% {
-  top: -10vh;
-  opacity: 0;
+    top: -10vh;
+    opacity: 0;
   }
-  10%{
-  top: 3vh;
-  opacity: 1;
+  10% {
+    top: 3vh;
+    opacity: 1;
   }
-  90%{
-  top: 3vh;
-  opacity: 1;
+  90% {
+    top: 3vh;
+    opacity: 1;
   }
-  100%{
-  top: -10vh;
-  opacity: 0;
+  100% {
+    top: -10vh;
+    opacity: 0;
   }
 }
 
-.alert ul{
+.alert ul {
   list-style: none;
 }
 
-.alert-danger{
+.alert-danger {
   background: rgba(238, 4, 4, 0.356);
   color: #ee2020;
 }
 
-.alert-success{
+.alert-success {
   background: rgba(4, 238, 63, 0.356);
   color: #145f0a;
 }
 
-.alert-message{
+.alert-message {
   background: rgba(222, 238, 4, 0.356);
   color: #8b8d09;
 }
@@ -340,11 +347,53 @@ main .conteiner > form select:valid + label {
   --span: 4;
 }
 
+.mt-15{
+  margin-top: 15px;
+}
+
 #submit {
   padding: 0;
   text-align: center;
   padding-inline: 10px;
   color: var(--verde);
+}
+
+table {
+  width: 100%;
+  vertical-align: center;
+  text-align: center;
+  border-spacing: 0;
+}
+
+table thead th{
+  font-weight: bolder;
+  /* border:  2px solid black; */
+}
+
+table td{
+  padding-top: 10px;
+}
+
+table th::after {
+  background: var(--vermelho);
+  position: relative;
+  display: block;
+  content: "";
+  height: 1px;
+  /* top: -7px; */
+  content: "";
+  width: 100%;
+}
+
+table td::after {
+  background: var(--cinza);
+  position: relative;
+  display: block;
+  content: "";
+  height: 1px;
+  /* top: -7px; */
+  content: "";
+  width: 100%;
 }
 
 /* Configurando Roda pé */
