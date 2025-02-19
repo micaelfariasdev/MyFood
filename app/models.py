@@ -42,7 +42,7 @@ class Cliente(db.Model):
 class Produtos(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String, nullable=False)
-    descrição = db.Column(db.String, nullable=False)
+    descricao = db.Column(db.String, nullable=False)
     valor = db.Column(db.Numeric(10, 2), nullable=False)
     quantidade = db.Column(db.Integer, nullable=True)
     empresa_id = db.Column(db.Integer, db.ForeignKey('empresa.id'), nullable=False)

@@ -83,13 +83,19 @@ def gerar_codigo_unico():
 @app.route('/pedidos/novo/', methods=['GET', 'POST'])
 @login_required
 def cadastrar_pedido():
-    form = PedidoForm(empresa_id=current_user.id)  # Passando o ID da empresa logada para o formulário
-
+    codigo_gerado = gerar_codigo_unico()
+    form = PedidoForm(empresa_id=current_user.id, codigo=codigo_gerado)  # Passando o ID da empresa logada para o formulário
     if form.validate_on_submit():
         # Usando a função save para salvar o pedido
-        novo_pedido = form.save(empresa_id=current_user.id, codigo=gerar_codigo_unico)
+        form.save(empresa_id=current_user.id, codigo=codigo_gerado)
 
         flash('Pedido cadastrado com sucesso!', 'success')
         return redirect(url_for('listar_pedidos'))
 
-    return render_template('cadastrar_pedido.html', form=form)
+    return render_template('novo_pedido.html', form=form)
+
+@app.route('/produtos/novo/', methods=['GET', 'POST'])
+@login_required
+def novo_produto():
+    form = ProdutosForm()
+    

@@ -1,0 +1,14 @@
+{% extends "base.html" %} {% block main %}
+<div class="conteiner">
+  <h1>Fazer Pedido</h1>
+  <form method="post">
+    {{ form.csrf_token }}
+    <div class="div-r-75">{{ form.codigo(placeholder='.') }} {{ form.codigo.label }}</div>
+    <div class="div-r-75">{{ form.cliente_id(placeholder='.') }} {{ form.cliente_id.label }}</div>
+    <div class="div-r-75">{{ form.descricao(placeholder='.') }} {{ form.descricao.label }}</div>
+    <div class="span-2 div-col-1">{{ form.produtos(placeholder='.') }} {{ form.produtos.label }}</div>
+    <div class="div-r-25">{{ form.valor(placeholder='.') }} {{ form.valor.label }}</div>
+    <div class="div-col-1">{{ form.submit }}</div>
+  </form>
+</div>
+{% endblock %}

@@ -88,7 +88,7 @@ class PedidoForm(FlaskForm):
         ]
 
     
-    codigo = StringField('Código', render_kw={"readonly": True})
+    codigo = StringField('Código', validators=[DataRequired()], render_kw={"readonly": True})
     descricao = TextAreaField('Descrição')
     valor = FloatField('Valor do Pedido')
     cliente_id = SelectField('Cliente', coerce=int, validators=[DataRequired()])
@@ -172,3 +172,27 @@ class LoginForm(FlaskForm):
     user = StringField('Usuario', validators=[DataRequired()])
     senha = PasswordField('Senha', validators=[DataRequired()])
     submit = SubmitField('Entrar')
+
+
+class ProdutosForm(FlaskForm):
+    nome =StringField('Nome do Produto', validators=[DataRequired()])
+    descricao=StringField('Descrição', validators=[DataRequired()])
+    valor=FloatField('Valor', validators=[DataRequired()])
+    estoque =BooleanField('Tem estoque?', validators=[Optional()])
+    quantidade=IntegerField('Quantidade em estoque')
+
+    def save(self, empresa_id):
+        produto = ProdutosForm(
+            nome=self.nome.data,
+            descricao=self.descricao.data,
+            valor=self.valor.data,
+            quantidade=self.quantidade.data,
+            empresa_id=empresa_id
+        )
+
+        db.session.add(produto)
+        db.session.commit()
+
+        # Realiza login automaticamente após o cadastro
+
+        flash('Produto cadastrada com sucesso!', 'success')
