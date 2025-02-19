@@ -3,8 +3,8 @@
 {% block main %}
 <div class="conteiner">
     
-    <h1>Cadastrar</h1>
-    <form  method="post">
+    <h1 class='div-col-1 span-4'>Cadastrar</h1>
+    <form  method="post" class='div-col-1 span-4'>
         {{ form.csrf_token }}
         <div class='div-r-all'>
             {{ form.user(placeholder='.') }}

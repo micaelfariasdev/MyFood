@@ -50,3 +50,7 @@ document.querySelector("input#cnpj").addEventListener("input", function (e) {
 
   e.target.value = value; // Atualiza o valor do campo de entrada
 });
+
+
+
+

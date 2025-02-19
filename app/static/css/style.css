@@ -123,13 +123,37 @@ main {
   text-align: left;
   justify-self: end;
 }
+#estoque[type="checkbox" i] {
+  top: -18px;
+  left: -146px;
+}
+
+.check{
+  position: relative;
+  bottom: -10px;
+    left: 0px;
+}
+
+.conteiner-est {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#quantidade-check{
+  display: none;
+}
+
+#estoque[type="checkbox" i]:checked + div {
+  display: block;
+}
 
 main > .conteiner {
   display: grid;
+  grid-template-columns: repeat(4, 1fr);
   align-content: start;
   align-self: start;
   align-items: center;
-  justify-items: center;
+  justify-items: stretch;
   background: var(--creme);
   width: 95%;
   min-height: 90%;
@@ -203,8 +227,7 @@ main .conteiner > h1 {
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.301);
   background: white;
 
-  animation: name duration timing-function delay iteration-count direction
-    fill-mode;
+  animation: name duration timing-function delay iteration-count direction fill-mode;
   animation: flash 5s forwards;
 }
 

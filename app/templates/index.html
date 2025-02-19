@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block main %}
 <div class="conteiner">
-    <h1>{% if current_user.is_authenticated %}{{ current_user.user.title() }}. {% endif %}Seja Bem Vindo ao My food.</h1>
+    <h1 class='div-col-1 span-4'>{% if current_user.is_authenticated %}{{ current_user.user.title() }}. {% endif %}Seja Bem Vindo ao My food.</h1>
 </div>
 
 <div class="conteiner-body" id="conteiner-body">

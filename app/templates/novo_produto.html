@@ -1,13 +1,15 @@
-{% extends "base.html" %} {% block main %}
+{% extends "base.html" %}
+{% block main %}
 <div class="conteiner">
-  <h1>Novo Produro</h1>
-  <form method="post">
+  <h1 class="div-col-1">Novo Produto</h1>
+
+  <form method="post" class="div-col-1 span-2">
     {{ form.csrf_token }}
-    <div class="div-r-75">{{ form.nome(placeholder='.') }} {{ form.nome.label }}</div>
-    <div class="div-r-75">{{ form.descricao(placeholder='.') }} {{ form.descricao.label }}</div>
-    <div class="div-r-75">{{ form.valor(placeholder='.') }} {{ form.valor.label }}</div>
-    <div class="span-2 div-col-1">{{ form.estoque(placeholder='.') }} {{ form.estoque.label }}</div>
-    <div class="div-r-25">{{ form.quantidade(placeholder='.') }} {{ form.quantidade.label }}</div>
+    <div class="div-r-all">{{ form.nome(placeholder='.') }} {{ form.nome.label }}</div>
+    <div class="div-r-all">{{ form.descricao(placeholder='.') }} {{ form.descricao.label }}</div>
+    <div class="div-r-all">{{ form.valor(placeholder='.') }} {{ form.valor.label }}</div>
+    
+    <div class="span-2 div-r-all conteiner-est"><span class="check">{{ form.estoque.label }}</span>{{ form.estoque(id='estoque', placeholder='.') }}<div id="quantidade-check" >{{ form.quantidade(placeholder='.') }} {{ form.quantidade.label }}</div> </div>
     <div class="div-col-1">{{ form.submit }}</div>
   </form>
 </div>
