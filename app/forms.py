@@ -124,7 +124,7 @@ class EmpresaForm(FlaskForm):
     confirmsenha = PasswordField('Confirme sua senha', validators=[DataRequired(), EqualTo('senha'),Length(min=6, max=20)])
     nome = StringField('Nome da Empresa', validators=[DataRequired()])
     razao_social = StringField('Razão Social', validators=[DataRequired()])
-    cnpj = IntegerField('CNPJ', validators=[DataRequired()])
+    cnpj = StringField('CNPJ', validators=[DataRequired(),Length(max=18)])
     email = EmailField('E-mail', validators=[DataRequired(), Email()])
     telefone = StringField('Telefone', validators=[DataRequired()])
     end_rua = StringField('Endereço', validators=[DataRequired()])
