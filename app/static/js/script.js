@@ -46,10 +46,31 @@ document.querySelector("input#cnpj").addEventListener("input", function (e) {
   if (value.length === 14) {
     value = `${value.slice(0, 2)}.${value.slice(2, 5)}.${value.slice(5, 8)}/${value.slice(8, 12)}-${value.slice(12, 14)}`;
   }
-  
 
-  e.target.value = value; // Atualiza o valor do campo de entrada
+document.querySelectorAll("#valor").addEventListener("input", function (e) {
+    let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
+
+    if (value.length === 0) {
+        e.target.value = ""; // Se estiver vazio, mantém em branco
+        return;
+    }
+
+    // Se houver apenas centavos, adicionamos "0,"
+    if (value.length === 1) {
+        value = "0" + value;
+    }
+
+    // Obtém a parte inteira e os centavos
+    let intPart = value.slice(0, -2) || "0"; // Parte inteira (ou "0" se não houver)
+    let decimalPart = value.slice(-2).padStart(2, "0"); // Garante dois dígitos nos centavos
+
+    // Formata com separadores de milhar
+    intPart = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+    e.target.value = `R$ ${intPart},${decimalPart}`;
 });
+
+  
 
 
 
