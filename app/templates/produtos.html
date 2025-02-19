@@ -1,0 +1,19 @@
+{% extends "base.html" %} {% block main %}
+<div class="conteiner">
+  <h1 class="div-col-1">Produtos</h1>
+  <a href="{{ url_for('novo_produto') }}" class="div-col-4"><input type="button" id="submit" value="Novo Produto" /></a>
+
+  <div class="conteiner-produtos div-col-1 span-4 mt-15">
+      {% for produto in produtos %}
+      <div class="produto">
+        <p><strong>Nome:</strong> {{ produto.nome }}</p>
+        <p><strong>Decrição:</strong> {{ produto.descricao }}</p>
+        <p><strong>Valor:</strong> {{ produto.valor }}</p>
+        {% if produto.quantidade != none %}
+        <p><strong>Quantidade:</strong> {{ produto.quantidade }}</p>
+        {% endif %}
+      </div>
+      {% endfor %}
+  </div>
+</div>
+{% endblock %}

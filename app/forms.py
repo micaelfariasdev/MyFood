@@ -71,6 +71,9 @@ class ClienteForm(FlaskForm):
         )
         db.session.add(cliente)
         db.session.commit()
+
+        flash('Cliente cadastrada com sucesso!', 'success')
+
    
 
 class PedidoForm(FlaskForm):
@@ -114,6 +117,9 @@ class PedidoForm(FlaskForm):
         # Salvar o pedido no banco de dados
         db.session.add(novo_pedido)
         db.session.commit()
+
+        flash('Pedido feito com sucesso!', 'success')
+
         return novo_pedido
 
 class EmpresaForm(FlaskForm):
@@ -179,10 +185,11 @@ class ProdutosForm(FlaskForm):
     descricao=StringField('Descrição', validators=[DataRequired()])
     valor=FloatField('Valor', validators=[DataRequired()])
     estoque =BooleanField('Tem estoque?', validators=[Optional()])
-    quantidade=IntegerField('Quantidade em estoque')
+    quantidade=IntegerField('Quantidade em estoque', validators=[Optional()]    )
+    submit = SubmitField('Cadastrar')
 
     def save(self, empresa_id):
-        produto = ProdutosForm(
+        produto = Produtos(
             nome=self.nome.data,
             descricao=self.descricao.data,
             valor=self.valor.data,
@@ -192,7 +199,5 @@ class ProdutosForm(FlaskForm):
 
         db.session.add(produto)
         db.session.commit()
-
-        # Realiza login automaticamente após o cadastro
 
         flash('Produto cadastrada com sucesso!', 'success')

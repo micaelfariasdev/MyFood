@@ -90,12 +90,27 @@ def cadastrar_pedido():
         form.save(empresa_id=current_user.id, codigo=codigo_gerado)
 
         flash('Pedido cadastrado com sucesso!', 'success')
-        return redirect(url_for('listar_pedidos'))
+        return redirect(url_for('index'))
 
     return render_template('novo_pedido.html', form=form)
 
 @app.route('/produtos/novo/', methods=['GET', 'POST'])
 @login_required
 def novo_produto():
-    form = ProdutosForm()
-    
+    form = ProdutosForm(empresa_id=current_user.id)
+    if form.validate_on_submit():
+        form.save(empresa_id=current_user.id)
+        flash('Produto cadastrado com sucesso!', 'success')
+        return redirect(url_for('index'))
+    else:
+        for field, errors in form.errors.items():
+            for error in errors:
+                flash(f'Erro no campo {getattr(form, field).label.text}: {error}', 'danger')
+    return render_template('novo_produto.html', form=form)
+
+
+@app.route('/produtos/')
+@login_required
+def produtos():
+    produtos = Produtos.query.filter_by(empresa_id=current_user.id).all()
+    return render_template('produtos.html', produtos=produtos)  
