@@ -11,7 +11,8 @@
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
-    />
+    
+    
   </head>
   <body>
     <header>
@@ -49,7 +50,7 @@
               >
             </li>
             <li>
-              <a href="">
+              <a href="{{ url_for('pedidos') }}">
                 <i class="material-icons icon">shopping_basket</i
                 ><span id="link">Pedidos</span></a
               >
@@ -60,7 +61,7 @@
                 ><span id="link">Produtos</span></a
               >
             </li>
-            <li>
+            <!-- <li>
               <a href="">
                 <i class="material-icons icon">signal_cellular_alt</i
                 ><span id="link">Relatórios</span></a
@@ -71,13 +72,14 @@
                 <i class="material-icons icon">group</i
                 ><span id="link">Usuários</span></a
               >
-            </li>
+            </li> 
             <li>
               <a href="">
                 <i class="material-icons icon">manage_accounts</i
                 ><span id="link">Perfil</span></a
               >
             </li>
+            -->
             <li>
               <a href="{{ url_for('logout') }}">
                 <i class="material-icons icon">logout</i

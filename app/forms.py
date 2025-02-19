@@ -3,7 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms import *
 from wtforms.validators import *
 from app.models import *
-from flask_login import login_user
+from flask_login import login_user, current_user
 from flask import flash
 from json import dumps
 from werkzeug.security import generate_password_hash
@@ -62,6 +62,7 @@ class ClienteForm(FlaskForm):
         'Cidade' : self.end_cidade.data,
         'Estado': self.end_estado.data,
     }
+        
         cliente = Cliente(
             nome = self.nome.data,
             telefone = self.telefone.data,
@@ -69,57 +70,51 @@ class ClienteForm(FlaskForm):
             endereco = dumps(endereco),
             empresa_id = empresa_id
         )
+
         db.session.add(cliente)
         db.session.commit()
 
         flash('Cliente cadastrada com sucesso!', 'success')
 
-   
+class ProdutoForm(FlaskForm):
+    nome = StringField('')
+    valor = FloatField('')
+    quantidade = IntegerField('')
+    valort = FloatField('')
 
 class PedidoForm(FlaskForm):
-    def __init__(self, empresa_id, *args, **kwargs):
-        super(PedidoForm, self).__init__(*args, **kwargs)
-
-        # Busca clientes dessa empresa
-        self.cliente_id.choices = [
-            (c.id, c.nome) for c in Cliente.query.filter_by(empresa_id=empresa_id).all()
-        ]
-
-        # Busca produtos dessa empresa
-        self.produtos.choices = [
-            (p.id, p.nome) for p in Produtos.query.filter_by(empresa_id=empresa_id).all()
-        ]
-
-    
-    codigo = StringField('Código', validators=[DataRequired()], render_kw={"readonly": True})
-    descricao = TextAreaField('Descrição')
+    codigo = StringField('Código')
+    descricao = StringField('Descrição')
     valor = FloatField('Valor do Pedido')
-    cliente_id = SelectField('Cliente', coerce=int, validators=[DataRequired()])
-    produtos = SelectMultipleField('Produtos', coerce=int, validators=[DataRequired()])
+    quantidade = IntegerField('Valor do Pedido')
+    cliente_id = IntegerField('Cliente', validators=[DataRequired()])
+    produtos = TextAreaField('Produtos', validators=[DataRequired()])
     submit = SubmitField('Cadastrar Pedido')
 
-    def save(self, empresa_id, codigo):
-        
-        # Criar o novo pedido com os dados do formulário
+    
+    def save(self):
+        from json import loads  # Importar para converter JSON de string para lista de dicionários
+        from app import db, Pedido  # Evitar erro de importação circular
+
+
+        # Converter produtos de JSON (string) para lista de dicionários
+        produtos_json = loads(self.produtos.data)
+
+        # Criar o novo pedido
         novo_pedido = Pedido(
-            codigo=codigo,
+            codigo=self.codigo.data,
             descricao=self.descricao.data,
             valor=self.valor.data,
+            produtos=produtos_json,  # Agora está correto para db.JSON
             cliente_id=self.cliente_id.data,
-            empresa_id=empresa_id
+            empresa_id=current_user.id
         )
 
-        # Relacionando os produtos ao pedido
-        for produto_id in self.produtos.data:
-            produto = Produtos.query.get(produto_id)
-            novo_pedido.produtos.append(produto)
-
-        # Salvar o pedido no banco de dados
+        # Salvar no banco
         db.session.add(novo_pedido)
         db.session.commit()
 
         flash('Pedido feito com sucesso!', 'success')
-
         return novo_pedido
 
 class EmpresaForm(FlaskForm):
@@ -179,7 +174,6 @@ class LoginForm(FlaskForm):
     senha = PasswordField('Senha', validators=[DataRequired()])
     submit = SubmitField('Entrar')
 
-
 class ProdutosForm(FlaskForm):
     nome =StringField('Nome do Produto', validators=[DataRequired()])
     descricao=StringField('Descrição', validators=[DataRequired()])
@@ -201,3 +195,4 @@ class ProdutosForm(FlaskForm):
         db.session.commit()
 
         flash('Produto cadastrada com sucesso!', 'success')
+

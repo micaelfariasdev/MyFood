@@ -12,3 +12,7 @@ function LoginConteinerF() {
   cont1.classList.remove("show");
   cont2.classList.remove("show");
 }
+document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById('codigo').disabled = true;
+});
+

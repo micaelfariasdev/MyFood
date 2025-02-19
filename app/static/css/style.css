@@ -36,6 +36,7 @@ body {
   position: relative;
   top: 5px;
   padding-right: 10px;
+  color: var(--creme);
 }
 
 header {
@@ -105,16 +106,36 @@ main {
   align-items: center;
   background: var(--branco);
 }
+.conteiner-ped {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.c-red {
+  color: var(--vermelho);
+}
+
+.start {
+  justify-self: start;
+  text-align: right;
+}
+.end {
+  text-align: left;
+  justify-self: end;
+}
 
 main > .conteiner {
   display: grid;
   align-content: start;
+  align-self: start;
   align-items: center;
-    justify-items: center;
+  justify-items: center;
   background: var(--creme);
-  height: 95%;
   width: 95%;
+  min-height: 90%;
   padding: 20px;
+  padding-top: 50px;
+  margin-block: 30px;
   border-radius: 20px;
   box-shadow: 5px 5px 15px #00000056;
 }
@@ -159,6 +180,10 @@ main > .conteiner {
   top: 0;
 }
 
+a {
+  text-decoration: none;
+}
+
 .conteiner-float a {
   margin: 5px;
   font-size: 0.7em;
@@ -171,7 +196,7 @@ main .conteiner > h1 {
 }
 
 .alert {
-  position: absolute;
+  position: fixed;
   z-index: 9999;
   padding: 10px;
   border-radius: 10px;
@@ -228,8 +253,8 @@ main .conteiner > form {
   gap: 5px;
 }
 
-main .conteiner > form input,
-main .conteiner > form select {
+main .conteiner input,
+main .conteiner select {
   display: block;
   width: 100%;
   height: 30px;
@@ -240,7 +265,7 @@ main .conteiner > form select {
   padding-left: 10px;
 }
 
-main .conteiner > form label {
+main .conteiner label {
   display: inline;
   height: 30px;
   position: relative;
@@ -253,12 +278,8 @@ main .conteiner > form label {
   transition: all 0.3s;
 }
 
-main
-  .conteiner
-  > form
-  input:invalid:not(:focus):not(:placeholder-shown)
-  + label,
-main .conteiner > form select:invalid:not(:focus):not(:empty) + label {
+main .conteiner input:invalid:not(:focus):not(:placeholder-shown) + label,
+main .conteiner select:invalid:not(:focus):not(:empty) + label {
   border-left: 5px solid var(--creme);
   border-right: 5px solid var(--creme);
   bottom: 42px;
@@ -266,18 +287,18 @@ main .conteiner > form select:invalid:not(:focus):not(:empty) + label {
   color: var(--vermelho);
 }
 
-main .conteiner > form input:focus,
-main .conteiner > form input:valid,
-main .conteiner > form select:focus,
-main .conteiner > form select:valid {
+main .conteiner input:focus,
+main .conteiner input:valid,
+main .conteiner select:focus,
+main .conteiner select:valid {
   border: 2px solid var(--verde);
   outline: none;
 }
 
-main .conteiner > form input:focus + label,
-main .conteiner > form input:valid + label,
-main .conteiner > form select:focus + label,
-main .conteiner > form select:valid + label {
+main .conteiner input:focus + label,
+main .conteiner input:valid + label,
+main .conteiner select:focus + label,
+main .conteiner select:valid + label {
   border-left: 5px solid var(--creme);
   border-right: 5px solid var(--creme);
   bottom: 42px;
@@ -297,6 +318,25 @@ main .conteiner > form select:valid + label {
   font-weight: bolder;
   font-style: normal;
   text-decoration: none;
+}
+
+.block {
+  width: 70%;
+  background: black;
+  height: 5%;
+  position: fixed;
+  z-index: 10;
+  opacity: 0;
+}
+
+#produtos {
+  height: 100%;
+}
+
+.bord-on {
+  border-left: 1px solid var(--vermelho);
+  border-bottom: 1px solid var(--vermelho);
+  padding-left: 5px;
 }
 
 .div-col-1 {
@@ -347,7 +387,7 @@ main .conteiner > form select:valid + label {
   --span: 4;
 }
 
-.mt-15{
+.mt-15 {
   margin-top: 15px;
 }
 
@@ -356,6 +396,7 @@ main .conteiner > form select:valid + label {
   text-align: center;
   padding-inline: 10px;
   color: var(--verde);
+  cursor: pointer;
 }
 
 table {
@@ -365,13 +406,18 @@ table {
   border-spacing: 0;
 }
 
-table thead th{
+table thead th {
   font-weight: bolder;
   /* border:  2px solid black; */
 }
 
-table td{
+table td {
   padding-top: 10px;
+}
+
+table .material-icons {
+  text-decoration: none;
+  font-size: 1em;
 }
 
 table th::after {
@@ -396,21 +442,26 @@ table td::after {
   width: 100%;
 }
 
-.conteiner-produtos{
+.conteiner-produtos {
   display: flex;
   flex-flow: row wrap;
   gap: 10px;
   width: 100%;
+  justify-content: space-between;
   height: 100%;
 }
 
-.produto{
+.produto {
   min-height: 180px;
   padding: 20px;
   border-radius: 20px;
   background: var(--laranja);
   width: 200px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.404);
+}
+
+.produto > p {
+  margin-bottom: 5px;
 }
 
 /* Configurando Roda pé */

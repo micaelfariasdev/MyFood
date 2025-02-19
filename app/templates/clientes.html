@@ -21,7 +21,16 @@
                 <td>{{ cliente.telefone }}</td>
                 <td>{{ cliente.email }}</td>
                 <td>{{ cliente.pedidos_historico | length }}</td>
-                <td>X E V</td>
+                <td>
+                    
+                    <a href="{{ url_for('cart', id=cliente.id) }}">
+                        <i class="material-icons ">shopping_cart</i
+                        ></a
+                      >
+                    <a href="{{ url_for('vendas', id=cliente.id) }}">
+                        <i class="material-icons ">local_mall</i
+                        ></a
+                      >
             </tr>
             {% endfor %}
         </tbody>
