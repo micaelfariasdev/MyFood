@@ -4,15 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MyFood : Dashboard</title>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/style.css') }}"
-    />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    
-    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"
   </head>
   <body>
     <header>
@@ -24,42 +17,24 @@
           <ul>
             {% if current_user.is_authenticated %}
             <li>
-              <a href=""
-                ><i class="material-icons icon">person</i
-                ><span id="link">Bem vindo, {{ current_user.user }}</span></a
-              >
+              <a href=""><i class="material-icons icon">person</i><span id="link">Bem vindo, {{ current_user.user }}</span></a>
             </li>
             {% endif %} {% if not current_user.is_authenticated %}
             <li>
-              <a href="{{ url_for('cadastrar_empresa') }}"
-                ><i class="material-icons icon">create</i
-                ><span id="link">Cadastro</span></a
-              >
+              <a href="{{ url_for('cadastrar_empresa') }}"><i class="material-icons icon">create</i><span id="link">Cadastro</span></a>
             </li>
             {% endif %} {% if current_user.is_authenticated %}
             <li>
-              <a href="{{ url_for('index') }}"
-                ><i class="material-icons icon">home</i
-                ><span id="link">Iníco</span></a
-              >
+              <a href="{{ url_for('index') }}"><i class="material-icons icon">home</i><span id="link">Iníco</span></a>
             </li>
             <li>
-              <a href="{{ url_for('clientes') }}">
-                <i class="material-icons icon">groups</i
-                ><span id="link">Clientes</span></a
-              >
+              <a href="{{ url_for('clientes') }}"> <i class="material-icons icon">groups</i><span id="link">Clientes</span></a>
             </li>
             <li>
-              <a href="{{ url_for('pedidos') }}">
-                <i class="material-icons icon">shopping_basket</i
-                ><span id="link">Pedidos</span></a
-              >
+              <a href="{{ url_for('pedidos') }}"> <i class="material-icons icon">shopping_basket</i><span id="link">Pedidos</span></a>
             </li>
             <li>
-              <a href="{{ url_for('produtos') }}">
-                <i class="material-icons icon">sell</i
-                ><span id="link">Produtos</span></a
-              >
+              <a href="{{ url_for('produtos') }}"> <i class="material-icons icon">sell</i><span id="link">Produtos</span></a>
             </li>
             <!-- <li>
               <a href="">
@@ -81,14 +56,11 @@
             </li>
             -->
             <li>
-              <a href="{{ url_for('logout') }}">
-                <i class="material-icons icon">logout</i
-                ><span id="link">Sair</span></a
-              >
+              <a href="{{ url_for('logout') }}"> <i class="material-icons icon">logout</i><span id="link">Sair</span></a>
             </li>
             {% endif %} {% if not current_user.is_authenticated %}
             <li>
-              <a href="/#" onclick="LoginConteiner()">
+              <a href="#" onclick="LoginConteiner()">
                 <i class="material-icons icon">login</i>
                 <span id="link">Entrar</span>
               </a>
@@ -99,19 +71,31 @@
       </div>
     </header>
     <main>
-      {% with messages = get_flashed_messages(with_categories=true) %} {% if
-      messages %}{% for category, message in messages %}
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}{% for category, message in messages %}
       <div class="alert alert-{{ category }}">
-      <ul>
-        
-        <li >{{ message }}</li>
-        
-      </ul>
-    </div>
-    {% endfor %}{% endif %} {% endwith %}
-      
-      
-      {% block main %}{% endblock %}
+        <ul>
+          <li>{{ message }}</li>
+        </ul>
+      </div>
+      {% endfor %}{% endif %} {% endwith %} {% if not current_user.is_authenticated %}
+      <div class="conteiner-body" id="conteiner-body">
+        <div class="conteiner conteiner-float" id="conteiner-float">
+          <div class="div-col-4" id="fechar-login" onclick="LoginConteinerF()">
+            <a href="#">X</a>
+          </div>
+          <div class="div-col-4 span-4"><h1>Login</h1></div>
+          <form class="div-col-4 span-4" method="post">
+            {{ form.csrf_token }}
+            <div class="div-col-1 span-4">{{ form.user(placeholder='.') }} {{ form.user.label }}</div>
+            <div class="div-col-1 span-4">{{ form.senha(placeholder='.') }} {{ form.senha.label }}</div>
+            <div class="div-col-1 span-4">
+              {{ form.submit }}
+              <a href="{{ url_for('cadastrar_empresa') }}">Cadastre-se</a>
+            </div>
+          </form>
+        </div>
+      </div>
+      {% endif %} {% block main %}{% endblock %}
     </main>
     <footer>
       <div class="conteiner">

@@ -46,8 +46,9 @@ document.querySelector("input#cnpj").addEventListener("input", function (e) {
   if (value.length === 14) {
     value = `${value.slice(0, 2)}.${value.slice(2, 5)}.${value.slice(5, 8)}/${value.slice(8, 12)}-${value.slice(12, 14)}`;
   }
+})
 
-document.querySelectorAll("#valor").addEventListener("input", function (e) {
+document.querySelectorAll("#valor").addEventListener("change", function (e) {
     let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
 
     if (value.length === 0) {
@@ -69,9 +70,3 @@ document.querySelectorAll("#valor").addEventListener("input", function (e) {
 
     e.target.value = `R$ ${intPart},${decimalPart}`;
 });
-
-  
-
-
-
-
