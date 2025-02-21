@@ -8,8 +8,11 @@
     <div class="div-r-all">{{ form.nome(placeholder='.') }} {{ form.nome.label }}</div>
     <div class="div-r-all">{{ form.descricao(placeholder='.') }} {{ form.descricao.label }}</div>
     <div class="div-r-all">{{ form.valor(placeholder='.') }} {{ form.valor.label }}</div>
-    
-    <div class="span-2 div-r-all conteiner-est"><span class="check">{{ form.estoque.label }}</span>{{ form.estoque(id='estoque', placeholder='.') }}<div id="quantidade-check" >{{ form.quantidade(placeholder='.') }} {{ form.quantidade.label }}</div> </div>
+
+    <div class="span-2 div-r-all conteiner-est"><span class="check">{{ form.estoque.label }}</span>{{
+      form.estoque(id='estoque', placeholder='.') }}<div id="quantidade-check">{{ form.quantidade(placeholder='.') }} {{
+        form.quantidade.label }}</div>
+    </div>
     <div class="div-col-1">{{ form.submit }}</div>
   </form>
 </div>
