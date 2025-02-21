@@ -7,3 +7,5 @@ __pycache__/
 # Exceções para não ignorar arquivos essenciais
 !.gitignore
 .env
+Run.vbs
+RunApp.bat
